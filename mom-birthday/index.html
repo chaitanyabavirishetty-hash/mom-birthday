@@ -29,69 +29,48 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-z-index:1000;
 background:linear-gradient(135deg,#ffe4e1,#ffd6e7,#fff0f5);
-overflow:hidden;
+z-index:1000;
 }
 
 #intro h1{
-font-size:64px;
+font-size:60px;
 color:#ff4d6d;
-animation:heartbeat 2s infinite;
+animation:beat 2s infinite;
 }
 
-@keyframes heartbeat{
+@keyframes beat{
 0%{transform:scale(1)}
 50%{transform:scale(1.1)}
 100%{transform:scale(1)}
 }
 
-/* BLUR BACKGROUND */
+/* BLUR */
 
 .blurBackground{
 filter:blur(8px);
 }
 
-/* intro floating elements */
-
-.introHeart{
-position:absolute;
-font-size:26px;
-animation:introFloat 8s linear infinite;
-}
-
-.introBalloon{
-position:absolute;
-font-size:32px;
-animation:introFloat 10s linear infinite;
-}
-
-@keyframes introFloat{
-0%{transform:translateY(0);opacity:0}
-20%{opacity:1}
-100%{transform:translateY(-120vh);opacity:0}
-}
-
-/* MAIN PAGE */
+/* MAIN */
 
 #main{
 display:none;
 }
 
 h1{
-color:#ff4d6d;
 margin-top:40px;
+color:#ff4d6d;
 }
 
 /* CAROUSEL */
 
 .carousel{
-width:260px;
-height:260px;
+width:250px;
+height:250px;
 margin:40px auto;
 position:relative;
 transform-style:preserve-3d;
-animation:spin 16s linear infinite;
+animation:spin 18s linear infinite;
 }
 
 .carousel img{
@@ -100,9 +79,9 @@ width:220px;
 height:220px;
 border-radius:15px;
 object-fit:cover;
-left:20px;
-top:20px;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
+left:15px;
+top:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
 .carousel img:nth-child(1){transform:rotateY(0deg) translateZ(300px);}
@@ -135,48 +114,7 @@ padding:30px;
 margin:50px auto;
 width:70%;
 border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-}
-
-/* FLOATING HEARTS */
-
-.heart{
-position:fixed;
-bottom:-20px;
-font-size:22px;
-animation:heartUp 6s linear;
-}
-
-@keyframes heartUp{
-0%{transform:translateY(0)}
-100%{transform:translateY(-110vh)}
-}
-
-/* BALLOONS */
-
-.balloon{
-position:fixed;
-bottom:-60px;
-font-size:40px;
-animation:balloonUp 9s linear;
-}
-
-@keyframes balloonUp{
-0%{transform:translateY(0)}
-100%{transform:translateY(-120vh)}
-}
-
-/* CONFETTI */
-
-.confetti{
-position:fixed;
-width:10px;
-height:10px;
-animation:fall 4s linear forwards;
-}
-
-@keyframes fall{
-to{transform:translateY(120vh)}
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
 /* MEMORY PHOTOS */
@@ -207,7 +145,7 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 background:rgba(0,0,0,0.65);
-backdrop-filter:blur(10px);
+backdrop-filter:blur(12px);
 z-index:9999;
 color:white;
 padding:20px;
@@ -216,7 +154,7 @@ padding:20px;
 #finalScene img{
 width:280px;
 border-radius:20px;
-box-shadow:0 20px 40px rgba(0,0,0,0.5);
+box-shadow:0 20px 40px rgba(0,0,0,0.6);
 }
 
 #finalText{
@@ -226,15 +164,11 @@ margin-top:25px;
 line-height:1.6;
 }
 
-.signature{
-margin-top:30px;
-opacity:0.8;
-font-size:16px;
-}
+/* FLOAT HEARTS */
 
 .finalHeart{
 position:absolute;
-font-size:26px;
+font-size:28px;
 animation:floatHeart 6s linear infinite;
 }
 
@@ -283,11 +217,8 @@ animation:floatHeart 6s linear infinite;
 <p>
 
 From the very beginning of my life you have been my greatest support and my safe place.
-
 Every memory with you is something I treasure deeply.
-
 Your strength, kindness and love inspire me every single day.
-
 Happy Birthday Amma 💗
 
 </p>
@@ -304,26 +235,22 @@ Happy Birthday Amma 💗
 
 Amma, you are my greatest blessing.
 
-From my very first step in life, your love has been my strength,
-my comfort, and my safe place.
+From my very first step in life your love has been my strength,
+my comfort and my safe place.
 
 Everything I am today is because of you.
 
-Thank you for every sacrifice, every hug, and every moment of love.
+Thank you for every sacrifice, every hug and every moment of love.
 
 Happy Birthday Amma 💗
 
-</div>
-
-<div class="signature">
-Made with love by your son 💗
 </div>
 
 </div>
 
 <script>
 
-/* intro timer */
+/* intro */
 
 setTimeout(()=>{
 document.getElementById("intro").style.display="none";
@@ -334,81 +261,11 @@ document.getElementById("main").style.display="block";
 
 function showSurprise(){
 
-document.querySelector(".carousel").style.display="none";
-document.querySelector("button").style.display="none";
-
-createHearts();
-createBalloons();
-createConfetti();
 showMemories();
 
 }
 
-/* hearts */
-
-function createHearts(){
-
-setInterval(()=>{
-
-let heart=document.createElement("div");
-
-heart.className="heart";
-heart.innerHTML="❤️";
-
-heart.style.left=Math.random()*100+"vw";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>heart.remove(),6000);
-
-},3200);
-
-}
-
-/* balloons */
-
-function createBalloons(){
-
-setInterval(()=>{
-
-let balloon=document.createElement("div");
-
-balloon.className="balloon";
-balloon.innerHTML="🎈";
-
-balloon.style.left=Math.random()*100+"vw";
-
-document.body.appendChild(balloon);
-
-setTimeout(()=>balloon.remove(),9000);
-
-},4200);
-
-}
-
-/* confetti */
-
-function createConfetti(){
-
-for(let i=0;i<60;i++){
-
-let c=document.createElement("div");
-
-c.className="confetti";
-
-c.style.left=Math.random()*100+"vw";
-c.style.top=Math.random()*-100+"vh";
-c.style.backgroundColor=`hsl(${Math.random()*360},100%,50%)`;
-
-document.body.appendChild(c);
-
-setTimeout(()=>c.remove(),4000);
-
-}
-
-}
-
-/* memory wall */
+/* memories */
 
 function showMemories(){
 
@@ -425,9 +282,9 @@ const positions=[
 {top:"20vh",left:"10vw"},
 {top:"15vh",left:"40vw"},
 {top:"20vh",left:"70vw"},
-{top:"45vh",left:"15vw"},
+{top:"50vh",left:"15vw"},
 {top:"50vh",left:"45vw"},
-{top:"45vh",left:"75vw"}
+{top:"50vh",left:"75vw"}
 ];
 
 photos.forEach((photo,index)=>{
@@ -442,23 +299,25 @@ img.className="memory-photo";
 img.style.top=positions[index].top;
 img.style.left=positions[index].left;
 
-let rotate=(Math.random()*10)-5;
-
-img.style.transform="rotate("+rotate+"deg)";
-
 document.body.appendChild(img);
 
-},index*1400);
+},index*1200);
 
 });
 
-setTimeout(showFinal, photos.length*1400 + 2000);
+/* SHOW FINAL */
+
+setTimeout(showFinal,6000);
 
 }
 
-/* final scene */
+/* FINAL */
 
 function showFinal(){
+
+document.querySelectorAll(".memory-photo").forEach(p=>{
+p.style.opacity="0";
+});
 
 document.body.classList.add("blurBackground");
 
