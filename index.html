@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
 
+<html>
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +16,9 @@ background:linear-gradient(135deg,#ffe4e1,#ffd6e7,#fff0f5);
 overflow-x:hidden;
 }
 
-/* title */
-
 h1{
 color:#ff4d6d;
 margin-top:40px;
-font-size:36px;
 }
 
 /* button */
@@ -32,14 +29,9 @@ font-size:18px;
 background:#ff4d6d;
 color:white;
 border:none;
-border-radius:12px;
+border-radius:10px;
 cursor:pointer;
 margin-top:30px;
-transition:.3s;
-}
-
-button:hover{
-transform:scale(1.08);
 }
 
 /* memory photos */
@@ -50,7 +42,6 @@ flex-wrap:wrap;
 justify-content:center;
 gap:20px;
 margin-top:40px;
-padding:10px;
 }
 
 #memories img{
@@ -75,7 +66,7 @@ width:100%;
 height:100%;
 display:none;
 background:rgba(0,0,0,0.7);
-backdrop-filter:blur(8px);
+backdrop-filter:blur(10px);
 color:white;
 flex-direction:column;
 justify-content:center;
@@ -87,53 +78,29 @@ z-index:9999;
 
 #finalScene img{
 width:280px;
-max-width:90%;
 border-radius:20px;
 box-shadow:0 20px 40px rgba(0,0,0,0.5);
 }
 
-/* message */
-
 #finalText{
 margin-top:25px;
-font-size:20px;
+font-size:24px;
 max-width:650px;
-line-height:1.7;
-background:rgba(0,0,0,0.5);
-padding:20px;
-border-radius:15px;
+line-height:1.6;
 }
 
-/* hearts */
+/* floating hearts */
 
 .heart{
 position:absolute;
-font-size:28px;
+font-size:26px;
 animation:float 6s linear infinite;
 }
 
 @keyframes float{
 0%{transform:translateY(0);opacity:0}
 20%{opacity:1}
-100%{transform:translateY(-250px);opacity:0}
-}
-
-/* mobile */
-
-@media (max-width:600px){
-
-h1{
-font-size:28px;
-}
-
-#memories img{
-width:140px;
-}
-
-#finalText{
-font-size:18px;
-}
-
+100%{transform:translateY(-200px);opacity:0}
 }
 
 </style>
@@ -205,7 +172,7 @@ container.appendChild(img);
 
 });
 
-/* final scene */
+/* show final scene */
 
 setTimeout(()=>{
 
@@ -230,7 +197,7 @@ final.appendChild(heart);
 
 setTimeout(()=>heart.remove(),6000);
 
-},800);
+},1000);
 
 },6000);
 
@@ -239,4 +206,6 @@ setTimeout(()=>heart.remove(),6000);
 </script>
 
 </body>
+
 </html>
+
