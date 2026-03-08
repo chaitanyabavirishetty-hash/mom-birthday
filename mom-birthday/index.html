@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
 
@@ -16,22 +15,38 @@ background:linear-gradient(135deg,#ffe4e1,#ffd6e7,#fff0f5);
 overflow-x:hidden;
 }
 
+/* title */
+
 h1{
 color:#ff4d6d;
 margin-top:40px;
+font-size:38px;
+}
+
+/* subtitle */
+
+p{
+font-size:18px;
 }
 
 /* button */
 
 button{
-padding:15px 30px;
+padding:16px 35px;
 font-size:18px;
 background:#ff4d6d;
 color:white;
 border:none;
-border-radius:10px;
+border-radius:12px;
 cursor:pointer;
 margin-top:30px;
+transition:0.3s;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+button:hover{
+transform:scale(1.08);
+background:#ff3355;
 }
 
 /* memory photos */
@@ -40,8 +55,9 @@ margin-top:30px;
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:20px;
+gap:25px;
 margin-top:40px;
+padding:10px;
 }
 
 #memories img{
@@ -65,8 +81,8 @@ left:0;
 width:100%;
 height:100%;
 display:none;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(10px);
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(8px);
 color:white;
 flex-direction:column;
 justify-content:center;
@@ -76,17 +92,25 @@ padding:20px;
 z-index:9999;
 }
 
+/* final photo */
+
 #finalScene img{
 width:280px;
+max-width:90%;
 border-radius:20px;
 box-shadow:0 20px 40px rgba(0,0,0,0.5);
 }
 
+/* message box */
+
 #finalText{
 margin-top:25px;
-font-size:24px;
+font-size:20px;
 max-width:650px;
-line-height:1.6;
+line-height:1.7;
+background:rgba(0,0,0,0.45);
+padding:20px;
+border-radius:15px;
 }
 
 /* floating hearts */
@@ -100,7 +124,30 @@ animation:float 6s linear infinite;
 @keyframes float{
 0%{transform:translateY(0);opacity:0}
 20%{opacity:1}
-100%{transform:translateY(-200px);opacity:0}
+100%{transform:translateY(-250px);opacity:0}
+}
+
+/* mobile improvements */
+
+@media (max-width:600px){
+
+h1{
+font-size:28px;
+}
+
+p{
+font-size:16px;
+}
+
+#memories img{
+width:140px;
+}
+
+#finalText{
+font-size:18px;
+padding:18px;
+}
+
 }
 
 </style>
@@ -110,7 +157,7 @@ animation:float 6s linear infinite;
 <body>
 
 <audio id="music" loop>
-<source src="mom-birthday/music.mp3">
+<source src="music.mp3">
 </audio>
 
 <h1>Happy Birthday Amma 💗</h1>
@@ -122,7 +169,7 @@ animation:float 6s linear infinite;
 
 <div id="finalScene">
 
-<img src="mom-birthday/final.jpg">
+<img src="final.jpg">
 
 <div id="finalText">
 
@@ -148,12 +195,12 @@ function startSurprise(){
 document.getElementById("music").play();
 
 const photos=[
-"mom-birthday/amma1.jpg",
-"mom-birthday/amma2.jpg",
-"mom-birthday/amma3.jpg",
-"mom-birthday/amma4.jpg",
-"mom-birthday/amma5.jpg",
-"mom-birthday/amma6.jpg"
+"amma1.jpg",
+"amma2.jpg",
+"amma3.jpg",
+"amma4.jpg",
+"amma5.jpg",
+"amma6.jpg"
 ];
 
 let container=document.getElementById("memories");
@@ -197,7 +244,7 @@ final.appendChild(heart);
 
 setTimeout(()=>heart.remove(),6000);
 
-},1000);
+},800);
 
 },6000);
 
@@ -206,6 +253,4 @@ setTimeout(()=>heart.remove(),6000);
 </script>
 
 </body>
-
 </html>
-
