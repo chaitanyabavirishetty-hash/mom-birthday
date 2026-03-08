@@ -5,7 +5,6 @@
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Happy Birthday Amma 💗</title>
 
 <style>
@@ -45,6 +44,12 @@ animation:heartbeat 2s infinite;
 0%{transform:scale(1)}
 50%{transform:scale(1.1)}
 100%{transform:scale(1)}
+}
+
+/* BLUR BACKGROUND */
+
+.blurBackground{
+filter:blur(8px);
 }
 
 /* intro floating elements */
@@ -318,41 +323,11 @@ Made with love by your son 💗
 
 <script>
 
-/* intro hearts */
-
-for(let i=0;i<6;i++){
-
-let heart=document.createElement("div");
-heart.className="introHeart";
-heart.innerHTML="💗";
-
-heart.style.left=Math.random()*100+"vw";
-heart.style.bottom=Math.random()*20+"px";
-
-document.getElementById("intro").appendChild(heart);
-
-}
-
-for(let i=0;i<4;i++){
-
-let balloon=document.createElement("div");
-balloon.className="introBalloon";
-balloon.innerHTML="🎈";
-
-balloon.style.left=Math.random()*100+"vw";
-balloon.style.bottom=Math.random()*20+"px";
-
-document.getElementById("intro").appendChild(balloon);
-
-}
-
 /* intro timer */
 
 setTimeout(()=>{
-
 document.getElementById("intro").style.display="none";
 document.getElementById("main").style.display="block";
-
 },4000);
 
 /* surprise */
@@ -484,6 +459,8 @@ setTimeout(showFinal, photos.length*1400 + 2000);
 /* final scene */
 
 function showFinal(){
+
+document.body.classList.add("blurBackground");
 
 document.getElementById("finalScene").style.display="flex";
 
