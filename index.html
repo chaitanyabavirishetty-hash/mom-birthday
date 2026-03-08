@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-
 <html>
+
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Amma 💗</title>
+
+<title>Happy Birthday Amma ❤️</title>
 
 <style>
 
@@ -21,22 +22,7 @@ color:#ff4d6d;
 margin-top:40px;
 }
 
-/* button */
-
-button{
-padding:15px 30px;
-font-size:18px;
-background:#ff4d6d;
-color:white;
-border:none;
-border-radius:10px;
-cursor:pointer;
-margin-top:30px;
-}
-
-/* memory photos */
-
-#memories{
+.gallery{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
@@ -44,63 +30,84 @@ gap:20px;
 margin-top:40px;
 }
 
-#memories img{
+.gallery img{
 width:180px;
-border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-animation:fade 1.5s;
-}
-
-@keyframes fade{
-from{opacity:0;transform:scale(.8)}
-to{opacity:1;transform:scale(1)}
-}
-
-/* final scene */
-
-#finalScene{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-display:none;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(10px);
-color:white;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-z-index:9999;
-}
-
-#finalScene img{
-width:280px;
 border-radius:20px;
-box-shadow:0 20px 40px rgba(0,0,0,0.5);
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+transition:transform .3s;
 }
 
-#finalText{
-margin-top:25px;
-font-size:24px;
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+button{
+margin-top:40px;
+padding:15px 35px;
+font-size:18px;
+background:#ff4d6d;
+color:white;
+border:none;
+border-radius:12px;
+cursor:pointer;
+}
+
+button:hover{
+background:#ff3355;
+}
+
+#surprise{
+display:none;
+margin-top:40px;
+}
+
+#finalImage{
+width:320px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+#finalMessage{
 max-width:650px;
+margin:auto;
+margin-top:25px;
+padding:20px;
+font-size:18px;
 line-height:1.6;
+color:white;
+background:rgba(0,0,0,0.6);
+border-radius:15px;
 }
-
-/* floating hearts */
 
 .heart{
-position:absolute;
-font-size:26px;
+position:fixed;
+bottom:-10px;
+font-size:20px;
 animation:float 6s linear infinite;
 }
 
 @keyframes float{
-0%{transform:translateY(0);opacity:0}
-20%{opacity:1}
-100%{transform:translateY(-200px);opacity:0}
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-100vh);opacity:0;}
+}
+
+/* mobile */
+
+@media (max-width:768px){
+
+.gallery img{
+width:140px;
+}
+
+#finalImage{
+width:80%;
+}
+
+#finalMessage{
+font-size:17px;
+margin:20px;
+}
+
 }
 
 </style>
@@ -109,97 +116,74 @@ animation:float 6s linear infinite;
 
 <body>
 
-<audio id="music" loop>
-<source src="mom-birthday/music.mp3">
-</audio>
+<h1>Happy Birthday Amma ❤️</h1>
 
-<h1>Happy Birthday Amma 💗</h1>
 <p>Some of my favorite memories with you</p>
 
-<button onclick="startSurprise()">Click for Surprise 🎁</button>
+<div class="gallery">
 
-<div id="memories"></div>
+<img src="amma1.jpg">
+<img src="amma2.jpg">
+<img src="amma3.jpg">
+<img src="amma4.jpg">
+<img src="amma5.jpg">
+<img src="amma6.jpg">
 
-<div id="finalScene">
+</div>
 
-<img src="mom-birthday/final.jpg">
+<button onclick="showSurprise()">Click for Surprise 🎁</button>
 
-<div id="finalText">
+<div id="surprise">
 
-Amma, you are my greatest blessing.
+<img id="finalImage" src="final.jpg">
 
-From my very first step in life, your love has been my strength,
-my comfort, and my safe place.
+<div id="finalMessage">
 
+Amma, you are my greatest blessing. From my very first step in life,
+your love has been my strength, my comfort, and my safe place.
 Everything I am today is because of you.
 
 Thank you for every sacrifice, every hug, and every moment of love.
 
-Happy Birthday Amma 💗
+Happy Birthday Amma ❤️
 
 </div>
 
 </div>
+
+<audio id="music" src="music.mp3"></audio>
 
 <script>
 
-function startSurprise(){
+function showSurprise(){
+
+document.getElementById("surprise").style.display="block";
 
 document.getElementById("music").play();
 
-const photos=[
-"mom-birthday/amma1.jpg",
-"mom-birthday/amma2.jpg",
-"mom-birthday/amma3.jpg",
-"mom-birthday/amma4.jpg",
-"mom-birthday/amma5.jpg",
-"mom-birthday/amma6.jpg"
-];
+startHearts();
 
-let container=document.getElementById("memories");
+}
 
-/* show amma photos */
-
-photos.forEach((photo,i)=>{
-
-setTimeout(()=>{
-
-let img=document.createElement("img");
-img.src=photo;
-container.appendChild(img);
-
-},i*800);
-
-});
-
-/* show final scene */
-
-setTimeout(()=>{
-
-container.style.display="none";
-
-let final=document.getElementById("finalScene");
-final.style.display="flex";
-
-/* floating hearts */
+function startHearts(){
 
 setInterval(()=>{
 
 let heart=document.createElement("div");
 
 heart.className="heart";
-heart.innerHTML="💗";
+
+heart.innerHTML="❤️";
 
 heart.style.left=Math.random()*100+"vw";
-heart.style.bottom="0px";
 
-final.appendChild(heart);
+heart.style.fontSize=(Math.random()*20+15)+"px";
+
+document.body.appendChild(heart);
 
 setTimeout(()=>heart.remove(),6000);
 
-},1000);
-
-},6000);
+},400);
 
 }
 
@@ -208,4 +192,3 @@ setTimeout(()=>heart.remove(),6000);
 </body>
 
 </html>
-
