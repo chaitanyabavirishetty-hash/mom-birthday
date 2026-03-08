@@ -17,7 +17,12 @@ overflow-x:hidden;
 background:linear-gradient(135deg,#ffe4e1,#ffd6e7,#fff0f5);
 }
 
-/* INTRO */
+h1{
+color:#ff4d6d;
+margin-top:40px;
+}
+
+/* intro */
 
 #intro{
 position:fixed;
@@ -35,7 +40,6 @@ z-index:1000;
 
 #intro h1{
 font-size:60px;
-color:#ff4d6d;
 animation:beat 2s infinite;
 }
 
@@ -45,28 +49,17 @@ animation:beat 2s infinite;
 100%{transform:scale(1)}
 }
 
-/* BLUR */
-
-.blurBackground{
-filter:blur(8px);
-}
-
-/* MAIN */
+/* main page */
 
 #main{
 display:none;
 }
 
-h1{
-margin-top:40px;
-color:#ff4d6d;
-}
-
-/* CAROUSEL */
+/* carousel */
 
 .carousel{
-width:250px;
-height:250px;
+width:260px;
+height:260px;
 margin:40px auto;
 position:relative;
 transform-style:preserve-3d;
@@ -79,9 +72,9 @@ width:220px;
 height:220px;
 border-radius:15px;
 object-fit:cover;
-left:15px;
-top:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.3);
+left:20px;
+top:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
 .carousel img:nth-child(1){transform:rotateY(0deg) translateZ(300px);}
@@ -94,7 +87,7 @@ from{transform:rotateY(0)}
 to{transform:rotateY(360deg)}
 }
 
-/* BUTTON */
+/* button */
 
 button{
 padding:15px 30px;
@@ -106,7 +99,7 @@ border-radius:10px;
 cursor:pointer;
 }
 
-/* MESSAGE */
+/* message */
 
 .message{
 background:white;
@@ -117,7 +110,7 @@ border-radius:15px;
 box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* MEMORY PHOTOS */
+/* memory photos */
 
 .memory-photo{
 position:fixed;
@@ -132,7 +125,7 @@ box-shadow:0 10px 25px rgba(0,0,0,0.3);
 to{opacity:1}
 }
 
-/* FINAL SCENE */
+/* final scene */
 
 #finalScene{
 position:fixed;
@@ -144,31 +137,32 @@ display:none;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-background:rgba(0,0,0,0.65);
-backdrop-filter:blur(12px);
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(10px);
 z-index:9999;
 color:white;
+text-align:center;
 padding:20px;
 }
 
 #finalScene img{
 width:280px;
 border-radius:20px;
-box-shadow:0 20px 40px rgba(0,0,0,0.6);
+box-shadow:0 20px 40px rgba(0,0,0,0.5);
 }
 
 #finalText{
-font-size:26px;
+font-size:24px;
 max-width:650px;
 margin-top:25px;
 line-height:1.6;
 }
 
-/* FLOAT HEARTS */
+/* floating hearts */
 
 .finalHeart{
 position:absolute;
-font-size:28px;
+font-size:26px;
 animation:floatHeart 6s linear infinite;
 }
 
@@ -185,8 +179,10 @@ animation:floatHeart 6s linear infinite;
 <body>
 
 <div id="intro">
+
 <h1>Happy Birthday Amma 💗</h1>
 <p>A small surprise made with love</p>
+
 </div>
 
 <div id="main">
@@ -215,12 +211,10 @@ animation:floatHeart 6s linear infinite;
 <h2>Amma, Thank You for Everything 💗</h2>
 
 <p>
-
 From the very beginning of my life you have been my greatest support and my safe place.
 Every memory with you is something I treasure deeply.
 Your strength, kindness and love inspire me every single day.
 Happy Birthday Amma 💗
-
 </p>
 
 </div>
@@ -235,12 +229,12 @@ Happy Birthday Amma 💗
 
 Amma, you are my greatest blessing.
 
-From my very first step in life your love has been my strength,
-my comfort and my safe place.
+From my very first step in life, your love has been my strength,
+my comfort, and my safe place.
 
 Everything I am today is because of you.
 
-Thank you for every sacrifice, every hug and every moment of love.
+Thank you for every sacrifice, every hug, and every moment of love.
 
 Happy Birthday Amma 💗
 
@@ -250,7 +244,7 @@ Happy Birthday Amma 💗
 
 <script>
 
-/* intro */
+/* intro screen */
 
 setTimeout(()=>{
 document.getElementById("intro").style.display="none";
@@ -265,7 +259,7 @@ showMemories();
 
 }
 
-/* memories */
+/* memory photos */
 
 function showMemories(){
 
@@ -305,21 +299,15 @@ document.body.appendChild(img);
 
 });
 
-/* SHOW FINAL */
+/* show final after all photos */
 
-setTimeout(showFinal,6000);
+setTimeout(showFinal,8000);
 
 }
 
-/* FINAL */
+/* final scene */
 
 function showFinal(){
-
-document.querySelectorAll(".memory-photo").forEach(p=>{
-p.style.opacity="0";
-});
-
-document.body.classList.add("blurBackground");
 
 document.getElementById("finalScene").style.display="flex";
 
