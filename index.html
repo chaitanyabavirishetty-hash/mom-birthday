@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
 <html>
+
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,9 +84,12 @@ box-shadow:0 20px 40px rgba(0,0,0,0.5);
 
 #finalText{
 margin-top:25px;
-font-size:24px;
+font-size:22px;
 max-width:650px;
 line-height:1.6;
+background:rgba(0,0,0,0.5);
+padding:20px;
+border-radius:15px;
 }
 
 /* floating hearts */
@@ -110,7 +113,7 @@ animation:float 6s linear infinite;
 <body>
 
 <audio id="music" loop>
-<source src="mom-birthday/music.mp3">
+<source src="music.mp3">
 </audio>
 
 <h1>Happy Birthday Amma 💗</h1>
@@ -122,7 +125,7 @@ animation:float 6s linear infinite;
 
 <div id="finalScene">
 
-<img src="mom-birthday/final.jpg">
+<img src="final.jpg">
 
 <div id="finalText">
 
@@ -148,12 +151,12 @@ function startSurprise(){
 document.getElementById("music").play();
 
 const photos=[
-"mom-birthday/amma1.jpg",
-"mom-birthday/amma2.jpg",
-"mom-birthday/amma3.jpg",
-"mom-birthday/amma4.jpg",
-"mom-birthday/amma5.jpg",
-"mom-birthday/amma6.jpg"
+"amma1.jpg",
+"amma2.jpg",
+"amma3.jpg",
+"amma4.jpg",
+"amma5.jpg",
+"amma6.jpg"
 ];
 
 let container=document.getElementById("memories");
@@ -208,4 +211,3 @@ setTimeout(()=>heart.remove(),6000);
 </body>
 
 </html>
-
