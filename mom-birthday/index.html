@@ -2,22 +2,27 @@
 
 <html>
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday Amma 💗</title>
 
 <style>
+
 body{
 margin:0;
 font-family:Arial;
 text-align:center;
 background:linear-gradient(135deg,#ffe4e1,#ffd6e7,#fff0f5);
-overflow-x:hidden;
 }
+
+/* title */
 
 h1{
 color:#ff4d6d;
 margin-top:40px;
 }
+
+/* button */
 
 button{
 padding:15px 30px;
@@ -27,9 +32,10 @@ color:white;
 border:none;
 border-radius:10px;
 cursor:pointer;
+margin-top:30px;
 }
 
-/* Memory images */
+/* memory photos */
 
 #memories{
 display:flex;
@@ -45,7 +51,7 @@ border-radius:15px;
 box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
-/* FINAL SCENE */
+/* final scene */
 
 #finalScene{
 position:fixed;
@@ -77,6 +83,7 @@ font-size:24px;
 max-width:650px;
 line-height:1.6;
 }
+
 </style>
 
 </head>
@@ -88,9 +95,10 @@ line-height:1.6;
 </audio>
 
 <h1>Happy Birthday Amma 💗</h1>
+
 <p>Some of my favorite memories with you</p>
 
-<button onclick="showMemories()">Click for Surprise 🎁</button>
+<button onclick="startSurprise()">Click for Surprise 🎁</button>
 
 <div id="memories"></div>
 
@@ -99,18 +107,25 @@ line-height:1.6;
 <img src="mom-birthday/final.jpg">
 
 <div id="finalText">
-Amma, you are my greatest blessing.  
-From my very first step in life, your love has been my strength, my comfort, and my safe place.  
-Everything I am today is because of you.  
-Thank you for every sacrifice, every hug, and every moment of love.  
+
+Amma, you are my greatest blessing.
+
+From my very first step in life, your love has been my strength,
+my comfort, and my safe place.
+
+Everything I am today is because of you.
+
+Thank you for every sacrifice, every hug, and every moment of love.
+
 Happy Birthday Amma 💗
+
 </div>
 
 </div>
 
 <script>
 
-function showMemories(){
+function startSurprise(){
 
 document.getElementById("music").play();
 
@@ -131,11 +146,12 @@ img.src=photo;
 container.appendChild(img);
 });
 
-/* After 6 seconds show final scene */
+/* after 6 seconds hide photos and show final */
 
 setTimeout(()=>{
 
 container.style.display="none";
+
 document.getElementById("finalScene").style.display="flex";
 
 },6000);
@@ -145,4 +161,5 @@ document.getElementById("finalScene").style.display="flex";
 </script>
 
 </body>
+
 </html>
