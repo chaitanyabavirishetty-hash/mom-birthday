@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 
 <html>
-
 <head>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday Amma 💗</title>
 
 <style>
-
 body{
 margin:0;
 font-family:Arial;
@@ -22,60 +19,6 @@ color:#ff4d6d;
 margin-top:40px;
 }
 
-/* INTRO */
-
-#intro{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#ffe4e1,#ffd6e7,#fff0f5);
-z-index:1000;
-}
-
-#intro h1{
-font-size:50px;
-animation:beat 2s infinite;
-}
-
-@keyframes beat{
-0%{transform:scale(1)}
-50%{transform:scale(1.1)}
-100%{transform:scale(1)}
-}
-
-/* MAIN */
-
-#main{
-display:none;
-padding-bottom:100px;
-}
-
-/* CAROUSEL */
-
-.carousel{
-display:flex;
-justify-content:center;
-gap:15px;
-margin:40px auto;
-flex-wrap:wrap;
-}
-
-.carousel img{
-width:160px;
-height:160px;
-object-fit:cover;
-border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-}
-
-/* BUTTON */
-
 button{
 padding:15px 30px;
 font-size:18px;
@@ -86,26 +29,20 @@ border-radius:10px;
 cursor:pointer;
 }
 
-/* MEMORY GRID */
+/* Memory images */
 
-.memoryGrid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-max-width:600px;
-margin:40px auto;
+#memories{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+margin-top:40px;
 }
 
-.memoryGrid img{
-width:100%;
+#memories img{
+width:180px;
 border-radius:15px;
 box-shadow:0 10px 25px rgba(0,0,0,0.3);
-animation:fadeIn 1.5s;
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:scale(.9)}
-to{opacity:1;transform:scale(1)}
 }
 
 /* FINAL SCENE */
@@ -116,57 +53,35 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(8px);
 display:none;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(10px);
+color:white;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-color:white;
 padding:20px;
 z-index:9999;
 }
 
 #finalScene img{
-width:260px;
+width:280px;
 border-radius:20px;
 box-shadow:0 20px 40px rgba(0,0,0,0.5);
 }
 
 #finalText{
 margin-top:25px;
-font-size:22px;
-line-height:1.6;
+font-size:24px;
 max-width:650px;
+line-height:1.6;
 }
-
-/* FLOATING HEARTS */
-
-.heart{
-position:absolute;
-font-size:26px;
-animation:float 6s linear infinite;
-}
-
-@keyframes float{
-0%{transform:translateY(0);opacity:0}
-20%{opacity:1}
-100%{transform:translateY(-200px);opacity:0}
-}
-
 </style>
 
 </head>
 
 <body>
-
-<div id="intro">
-<h1>Happy Birthday Amma 💗</h1>
-<p>A small surprise made with love</p>
-</div>
-
-<div id="main">
 
 <audio id="music" loop>
 <source src="mom-birthday/music.mp3">
@@ -175,54 +90,27 @@ animation:float 6s linear infinite;
 <h1>Happy Birthday Amma 💗</h1>
 <p>Some of my favorite memories with you</p>
 
-<div class="carousel">
+<button onclick="showMemories()">Click for Surprise 🎁</button>
 
-<img src="mom-birthday/us1.jpg">
-<img src="mom-birthday/us2.jpg">
-<img src="mom-birthday/us3.jpg">
-<img src="mom-birthday/us4.jpg">
-
-</div>
-
-<button onclick="showSurprise()">Click for Surprise 🎁</button>
-
-<div id="memoryContainer"></div>
-
-</div>
+<div id="memories"></div>
 
 <div id="finalScene">
 
 <img src="mom-birthday/final.jpg">
 
 <div id="finalText">
-
-Amma, you are my greatest blessing.
-
-From my very first step in life, your love has been my strength,
-my comfort and my safe place.
-
-Everything I am today is because of you.
-
-Thank you for every sacrifice, every hug and every moment of love.
-
+Amma, you are my greatest blessing.  
+From my very first step in life, your love has been my strength, my comfort, and my safe place.  
+Everything I am today is because of you.  
+Thank you for every sacrifice, every hug, and every moment of love.  
 Happy Birthday Amma 💗
-
 </div>
 
 </div>
 
 <script>
 
-/* intro */
-
-setTimeout(()=>{
-document.getElementById("intro").style.display="none";
-document.getElementById("main").style.display="block";
-},3000);
-
-/* surprise */
-
-function showSurprise(){
+function showMemories(){
 
 document.getElementById("music").play();
 
@@ -235,56 +123,26 @@ const photos=[
 "mom-birthday/amma6.jpg"
 ];
 
-let container=document.createElement("div");
-container.className="memoryGrid";
+let container=document.getElementById("memories");
 
-photos.forEach((photo,i)=>{
+photos.forEach(photo=>{
+let img=document.createElement("img");
+img.src=photo;
+container.appendChild(img);
+});
+
+/* After 6 seconds show final scene */
 
 setTimeout(()=>{
 
-let img=document.createElement("img");
-img.src=photo;
-
-container.appendChild(img);
-
-},i*800);
-
-});
-
-document.getElementById("memoryContainer").appendChild(container);
-
-/* show final */
-
-setTimeout(showFinal,6500);
-
-}
-
-/* final scene */
-
-function showFinal(){
-
+container.style.display="none";
 document.getElementById("finalScene").style.display="flex";
 
-setInterval(()=>{
-
-let heart=document.createElement("div");
-
-heart.className="heart";
-heart.innerHTML="💗";
-
-heart.style.left=(40+Math.random()*20)+"vw";
-heart.style.top=(60+Math.random()*20)+"vh";
-
-document.getElementById("finalScene").appendChild(heart);
-
-setTimeout(()=>heart.remove(),6000);
-
-},1200);
+},6000);
 
 }
 
 </script>
 
 </body>
-
 </html>
