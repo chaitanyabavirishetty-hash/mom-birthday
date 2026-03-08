@@ -12,73 +12,16 @@ body{
 margin:0;
 font-family:Arial;
 text-align:center;
+background:linear-gradient(135deg,#ffe4e1,#ffd6e7,#fff0f5);
 overflow-x:hidden;
-background:linear-gradient(135deg,#ffe4e1,#ffd6e7,#fff0f5);
 }
 
-/* INTRO */
-
-#intro{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#ffe4e1,#ffd6e7,#fff0f5);
-z-index:1000;
-}
-
-#intro h1{
-font-size:64px;
+h1{
 color:#ff4d6d;
-animation:heartbeat 2s infinite;
+margin-top:40px;
 }
 
-@keyframes heartbeat{
-0%{transform:scale(1)}
-50%{transform:scale(1.1)}
-100%{transform:scale(1)}
-}
-
-/* MAIN */
-
-#main{
-display:none;
-}
-
-.carousel{
-width:260px;
-height:260px;
-margin:40px auto;
-position:relative;
-transform-style:preserve-3d;
-animation:spin 16s linear infinite;
-}
-
-.carousel img{
-position:absolute;
-width:220px;
-height:220px;
-border-radius:15px;
-object-fit:cover;
-left:20px;
-top:20px;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-}
-
-.carousel img:nth-child(1){transform:rotateY(0deg) translateZ(300px);}
-.carousel img:nth-child(2){transform:rotateY(90deg) translateZ(300px);}
-.carousel img:nth-child(3){transform:rotateY(180deg) translateZ(300px);}
-.carousel img:nth-child(4){transform:rotateY(270deg) translateZ(300px);}
-
-@keyframes spin{
-from{transform:rotateY(0)}
-to{transform:rotateY(360deg)}
-}
+/* button */
 
 button{
 padding:15px 30px;
@@ -88,19 +31,76 @@ color:white;
 border:none;
 border-radius:10px;
 cursor:pointer;
+margin-top:30px;
 }
 
-.memory-photo{
-position:fixed;
+/* memory photos */
+
+#memories{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+margin-top:40px;
+}
+
+#memories img{
 width:180px;
-border-radius:12px;
-opacity:0;
-animation:fadeIn 2s forwards;
+border-radius:15px;
 box-shadow:0 10px 25px rgba(0,0,0,0.3);
+animation:fade 1.5s;
 }
 
-@keyframes fadeIn{
-to{opacity:1}
+@keyframes fade{
+from{opacity:0;transform:scale(.8)}
+to{opacity:1;transform:scale(1)}
+}
+
+/* final scene */
+
+#finalScene{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:none;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(10px);
+color:white;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+z-index:9999;
+}
+
+#finalScene img{
+width:280px;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
+
+#finalText{
+margin-top:25px;
+font-size:24px;
+max-width:650px;
+line-height:1.6;
+}
+
+/* floating hearts */
+
+.heart{
+position:absolute;
+font-size:26px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:0}
+20%{opacity:1}
+100%{transform:translateY(-200px);opacity:0}
 }
 
 </style>
@@ -109,41 +109,33 @@ to{opacity:1}
 
 <body>
 
-<div id="intro">
-<h1>Happy Birthday Amma 💗</h1>
-<p>A small surprise made with love</p>
-</div>
-
-<div id="main">
-
-<audio autoplay loop>
-<source src="mom-birthday/music.mp3" type="audio/mpeg">
+<audio id="music" loop>
+<source src="mom-birthday/music.mp3">
 </audio>
 
 <h1>Happy Birthday Amma 💗</h1>
 <p>Some of my favorite memories with you</p>
 
-<div class="carousel">
+<button onclick="startSurprise()">Click for Surprise 🎁</button>
 
-<img src="mom-birthday/us1.jpg">
-<img src="mom-birthday/us2.jpg">
-<img src="mom-birthday/us3.jpg">
-<img src="mom-birthday/us4.jpg">
+<div id="memories"></div>
 
-</div>
+<div id="finalScene">
 
-<button onclick="showSurprise()">Click for Surprise 🎁</button>
+<img src="mom-birthday/final.jpg">
 
-<div class="message">
+<div id="finalText">
 
-<h2>Amma, Thank You for Everything 💗</h2>
+Amma, you are my greatest blessing.
 
-<p>
-From the very beginning of my life you have been my greatest support and my safe place.
-Every memory with you is something I treasure deeply.
-Your strength, kindness and love inspire me every day.
+From my very first step in life, your love has been my strength,
+my comfort, and my safe place.
+
+Everything I am today is because of you.
+
+Thank you for every sacrifice, every hug, and every moment of love.
+
 Happy Birthday Amma 💗
-</p>
 
 </div>
 
@@ -151,18 +143,9 @@ Happy Birthday Amma 💗
 
 <script>
 
-setTimeout(()=>{
-document.getElementById("intro").style.display="none";
-document.getElementById("main").style.display="block";
-},4000);
+function startSurprise(){
 
-function showSurprise(){
-
-showMemories();
-
-}
-
-function showMemories(){
+document.getElementById("music").play();
 
 const photos=[
 "mom-birthday/amma1.jpg",
@@ -173,36 +156,56 @@ const photos=[
 "mom-birthday/amma6.jpg"
 ];
 
-const positions=[
-{top:"20vh",left:"10vw"},
-{top:"15vh",left:"40vw"},
-{top:"20vh",left:"70vw"},
-{top:"45vh",left:"15vw"},
-{top:"50vh",left:"45vw"},
-{top:"45vh",left:"75vw"}
-];
+let container=document.getElementById("memories");
 
-photos.forEach((photo,index)=>{
+/* show amma photos */
+
+photos.forEach((photo,i)=>{
 
 setTimeout(()=>{
 
 let img=document.createElement("img");
-
 img.src=photo;
-img.className="memory-photo";
+container.appendChild(img);
 
-img.style.top=positions[index].top;
-img.style.left=positions[index].left;
-
-document.body.appendChild(img);
-
-},index*1200);
+},i*800);
 
 });
+
+/* show final scene */
+
+setTimeout(()=>{
+
+container.style.display="none";
+
+let final=document.getElementById("finalScene");
+final.style.display="flex";
+
+/* floating hearts */
+
+setInterval(()=>{
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+heart.innerHTML="💗";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.bottom="0px";
+
+final.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+
+},1000);
+
+},6000);
 
 }
 
 </script>
 
 </body>
+
 </html>
+
