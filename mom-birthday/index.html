@@ -13,8 +13,8 @@ body{
 margin:0;
 font-family:Arial;
 text-align:center;
-overflow-x:hidden;
 background:linear-gradient(135deg,#ffe4e1,#ffd6e7,#fff0f5);
+overflow-x:hidden;
 }
 
 h1{
@@ -22,7 +22,7 @@ color:#ff4d6d;
 margin-top:40px;
 }
 
-/* intro */
+/* INTRO */
 
 #intro{
 position:fixed;
@@ -39,7 +39,7 @@ z-index:1000;
 }
 
 #intro h1{
-font-size:60px;
+font-size:50px;
 animation:beat 2s infinite;
 }
 
@@ -49,45 +49,32 @@ animation:beat 2s infinite;
 100%{transform:scale(1)}
 }
 
-/* main page */
+/* MAIN */
 
 #main{
 display:none;
+padding-bottom:100px;
 }
 
-/* carousel */
+/* CAROUSEL */
 
 .carousel{
-width:260px;
-height:260px;
+display:flex;
+justify-content:center;
+gap:15px;
 margin:40px auto;
-position:relative;
-transform-style:preserve-3d;
-animation:spin 18s linear infinite;
+flex-wrap:wrap;
 }
 
 .carousel img{
-position:absolute;
-width:220px;
-height:220px;
-border-radius:15px;
+width:160px;
+height:160px;
 object-fit:cover;
-left:20px;
-top:20px;
+border-radius:15px;
 box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
-.carousel img:nth-child(1){transform:rotateY(0deg) translateZ(300px);}
-.carousel img:nth-child(2){transform:rotateY(90deg) translateZ(300px);}
-.carousel img:nth-child(3){transform:rotateY(180deg) translateZ(300px);}
-.carousel img:nth-child(4){transform:rotateY(270deg) translateZ(300px);}
-
-@keyframes spin{
-from{transform:rotateY(0)}
-to{transform:rotateY(360deg)}
-}
-
-/* button */
+/* BUTTON */
 
 button{
 padding:15px 30px;
@@ -99,33 +86,29 @@ border-radius:10px;
 cursor:pointer;
 }
 
-/* message */
+/* MEMORY GRID */
 
-.message{
-background:white;
-padding:30px;
-margin:50px auto;
-width:70%;
-border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
+.memoryGrid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+max-width:600px;
+margin:40px auto;
 }
 
-/* memory photos */
-
-.memory-photo{
-position:fixed;
-width:180px;
-border-radius:12px;
-opacity:0;
-animation:fadeIn 2s forwards;
+.memoryGrid img{
+width:100%;
+border-radius:15px;
 box-shadow:0 10px 25px rgba(0,0,0,0.3);
+animation:fadeIn 1.5s;
 }
 
 @keyframes fadeIn{
-to{opacity:1}
+from{opacity:0;transform:scale(.9)}
+to{opacity:1;transform:scale(1)}
 }
 
-/* final scene */
+/* FINAL SCENE */
 
 #finalScene{
 position:fixed;
@@ -133,40 +116,40 @@ top:0;
 left:0;
 width:100%;
 height:100%;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(8px);
 display:none;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(10px);
-z-index:9999;
-color:white;
 text-align:center;
+color:white;
 padding:20px;
+z-index:9999;
 }
 
 #finalScene img{
-width:280px;
+width:260px;
 border-radius:20px;
 box-shadow:0 20px 40px rgba(0,0,0,0.5);
 }
 
 #finalText{
-font-size:24px;
-max-width:650px;
 margin-top:25px;
+font-size:22px;
 line-height:1.6;
+max-width:650px;
 }
 
-/* floating hearts */
+/* FLOATING HEARTS */
 
-.finalHeart{
+.heart{
 position:absolute;
 font-size:26px;
-animation:floatHeart 6s linear infinite;
+animation:float 6s linear infinite;
 }
 
-@keyframes floatHeart{
+@keyframes float{
 0%{transform:translateY(0);opacity:0}
 20%{opacity:1}
 100%{transform:translateY(-200px);opacity:0}
@@ -179,20 +162,17 @@ animation:floatHeart 6s linear infinite;
 <body>
 
 <div id="intro">
-
 <h1>Happy Birthday Amma 💗</h1>
 <p>A small surprise made with love</p>
-
 </div>
 
 <div id="main">
 
-<audio autoplay loop>
+<audio id="music" loop>
 <source src="mom-birthday/music.mp3">
 </audio>
 
 <h1>Happy Birthday Amma 💗</h1>
-
 <p>Some of my favorite memories with you</p>
 
 <div class="carousel">
@@ -206,18 +186,7 @@ animation:floatHeart 6s linear infinite;
 
 <button onclick="showSurprise()">Click for Surprise 🎁</button>
 
-<div class="message">
-
-<h2>Amma, Thank You for Everything 💗</h2>
-
-<p>
-From the very beginning of my life you have been my greatest support and my safe place.
-Every memory with you is something I treasure deeply.
-Your strength, kindness and love inspire me every single day.
-Happy Birthday Amma 💗
-</p>
-
-</div>
+<div id="memoryContainer"></div>
 
 </div>
 
@@ -230,11 +199,11 @@ Happy Birthday Amma 💗
 Amma, you are my greatest blessing.
 
 From my very first step in life, your love has been my strength,
-my comfort, and my safe place.
+my comfort and my safe place.
 
 Everything I am today is because of you.
 
-Thank you for every sacrifice, every hug, and every moment of love.
+Thank you for every sacrifice, every hug and every moment of love.
 
 Happy Birthday Amma 💗
 
@@ -244,24 +213,18 @@ Happy Birthday Amma 💗
 
 <script>
 
-/* intro screen */
+/* intro */
 
 setTimeout(()=>{
 document.getElementById("intro").style.display="none";
 document.getElementById("main").style.display="block";
-},4000);
+},3000);
 
 /* surprise */
 
 function showSurprise(){
 
-showMemories();
-
-}
-
-/* memory photos */
-
-function showMemories(){
+document.getElementById("music").play();
 
 const photos=[
 "mom-birthday/amma1.jpg",
@@ -272,36 +235,27 @@ const photos=[
 "mom-birthday/amma6.jpg"
 ];
 
-const positions=[
-{top:"20vh",left:"10vw"},
-{top:"15vh",left:"40vw"},
-{top:"20vh",left:"70vw"},
-{top:"50vh",left:"15vw"},
-{top:"50vh",left:"45vw"},
-{top:"50vh",left:"75vw"}
-];
+let container=document.createElement("div");
+container.className="memoryGrid";
 
-photos.forEach((photo,index)=>{
+photos.forEach((photo,i)=>{
 
 setTimeout(()=>{
 
 let img=document.createElement("img");
-
 img.src=photo;
-img.className="memory-photo";
 
-img.style.top=positions[index].top;
-img.style.left=positions[index].left;
+container.appendChild(img);
 
-document.body.appendChild(img);
-
-},index*1200);
+},i*800);
 
 });
 
-/* show final after all photos */
+document.getElementById("memoryContainer").appendChild(container);
 
-setTimeout(showFinal,8000);
+/* show final */
+
+setTimeout(showFinal,6500);
 
 }
 
@@ -315,7 +269,7 @@ setInterval(()=>{
 
 let heart=document.createElement("div");
 
-heart.className="finalHeart";
+heart.className="heart";
 heart.innerHTML="💗";
 
 heart.style.left=(40+Math.random()*20)+"vw";
